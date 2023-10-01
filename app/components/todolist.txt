@@ -1,0 +1,34 @@
+NEA TO DO LIST:
+
+Coding:
+    Mr Tong's Feedback:
+    - Implement polymorphism and parent classes (admin vs customer login).
+    - Implement a possible business version option.
+
+    Client-server model:
+    - Design SQL databases for user management.
+    - Implement the server operation into the code.
+
+    Dynamic task algorithm:
+    - Implement a method of adding time for breaks.
+    - Take into account the user Profile settings in order to personalise the algorithm.
+    - Find method of checking that a timeslot is fully available - avoiding collisions.
+
+    Task management:
+    - Sort out category creation and management.
+    - Time-free validation for fixed tasks.
+
+    Profile page:
+    - Create Profile page.
+    - Aesthetics e.g. user photo.
+    - Accessibility e.g. font settings, text size settings, colourblindness (Apple system settings is a good template but there will be limits to reasonable implementation in this).
+    - User productivity preferences e.g. morning/night, average sleep schedule, attention span etc.
+    - Category management go here?
+
+
+Writeup:
+    Analysis:
+    - Update user management objectives.
+    - Have a full interview with Ollie to help 'determine' objectives.
+    - Define any keywords that I may use during the writeup.
+    - HOMEWORK : Overall System Design etc

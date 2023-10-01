@@ -1,0 +1,15 @@
+- dynamic task ordering
+- first create a list of tasks in order of importance (using priority and enjoyment characteristics)
+- for each task in list, go from current time until available timeslot of correct length found 
+- for each task
+
+
+
+techniques:
+- merge sort or quick sort for ordering tasks
+- complex data model
+- list operations
+- scheduling algorithms
+- recursive algorithms
+- complex user-defined use of object orientated programming (OOP) model, eg classes, inheritance, composition, polymorphism, interfaces
+- complex client-server model

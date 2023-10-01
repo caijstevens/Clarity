@@ -10,7 +10,10 @@
     </actionBar>
     <!-- Making use of a dockLayout to position elements in the correct places. -->
     <dockLayout class="home" stretchLastChild="true" backgroundColor="#E3E1E6">
-        <label text="date, settings + profile" dock="top" height="40" backgroundColor="#E1D1B9" textAlignment="center"/> 
+        <absoluteLayout dock="top" height="40" backgroundColor="#E1D1B9">
+            <label text="Today" height="40" width="100%" textAlignment="center" color="white" fontSize="20"/>
+            <button class="profileButton" on:tap="{toProfile}" left="330" text="P" top="-2" width="30" height="30"/>
+        </absoluteLayout>
         <!-- Creates a bar to switch the viewed date on the calendar. -->  
         <stackLayout dock="top" orientation="horizontal" height="60" backgroundColor="#D9Bf9D" on:swipe="{ onWeekSwipe }">
             {#each weekDates as date, index (index)}
@@ -96,6 +99,8 @@
     import { Http } from '@nativescript/core';
     import loginPage from "./loginPage.svelte";
     import RegisterPage from "./registerPage.svelte";
+    import Profile from "./Profile.svelte";
+    
 
     // Creates blank arrays for a list of tasks and a list of categories.
     let tasks: Task[] = [];
@@ -119,6 +124,15 @@
             props: {
                 tasks: tasks,
                 categories: categories
+            }
+        })
+    }
+
+    function toProfile() {
+        navigate ({
+            page: Profile,
+            props: {
+                
             }
         })
     }
@@ -213,7 +227,7 @@
     )
 
     // below is the algorithm to organise and schedule dynamic tasks.
-    
+
 
     //main
     showModal({
@@ -240,6 +254,10 @@
     }
 
     .dateButton {
+        border-radius: 15;
+    }
+
+    .profileButton {
         border-radius: 15;
     }
 </style>
