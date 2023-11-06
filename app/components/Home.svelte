@@ -89,20 +89,22 @@
 
 
     // Imports for the necessary classes and functions.
-    import AddSchedule from "./AddSchedule.svelte";
     import { navigate } from 'svelte-native';
-    import { Task } from "./classes/Task";
-    import { Category } from "./classes/Category";
-    import { UserSettings } from "./classes/UserSettings";
-    import * as utils from "./utils";
-    import { SwipeGestureEventData } from "@nativescript/core";
     import { showModal } from 'svelte-native';
-    import modifyTask from "./modifyTask.svelte";
     import { Http } from '@nativescript/core';
+    import { SwipeGestureEventData } from "@nativescript/core";
+
+    import AddSchedule from "./AddSchedule.svelte";
+    import modifyTask from "./modifyTask.svelte";
     import loginPage from "./loginPage.svelte";
     import RegisterPage from "./registerPage.svelte";
     import Profile from "./Profile.svelte";
-    
+    import * as utils from "./utils";
+
+    import { Task } from "./classes/Task";
+    import { Category } from "./classes/Category";
+    import { UserSettings } from "./classes/UserSettings";
+    import { ServerInfo } from "./classes/ServerInfo";
 
     // Creates blank arrays for a list of tasks and a list of categories.
     let tasks: Task[] = [];
@@ -112,6 +114,7 @@
     let weekDates = utils.getWeekFromDay(selectedDay);
     let isModalOpen: boolean = false;
     let userSettings = new UserSettings("username", "nickname", new Date(8 * 3600000), new Date(20 * 3600000));
+    let serverInfo = new ServerInfo("")
     
     // An aesthetics management function to ensure that the hours are displayed in 24-hour time, adding leading zeros where needed.
     function padNumber(num: number, size: number) {
@@ -209,6 +212,8 @@
             checkLogin();
         }
     }
+
+
 
     function onNavigatingTo() {
         checkLogin();

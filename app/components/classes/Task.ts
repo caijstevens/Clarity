@@ -13,6 +13,7 @@ export class Task {
     enjoyment: number;
     displayedStart: Date;
     displayedLength: number;
+    completed: boolean;
 
     constructor(
         name = "New Task",
@@ -22,7 +23,8 @@ export class Task {
         priority = 1,
         enjoyment = 1,
         displayedStart = new Date(),
-        displayedLength = 1
+        displayedLength = 1,
+        completed = false
     ) {
         this.name = name;
         this.timeframe = timeframe;
@@ -34,6 +36,7 @@ export class Task {
         this.displayedLength = displayedLength;
         this.startTime = utils.getNextHour();
         this.endTime = new Date(this.startTime.getTime() + 1800000);
+        this.completed = completed
     }
     
     onDynamicChanged(inputValue: boolean) {
@@ -106,6 +109,10 @@ export class Task {
             this.displayedStart = this.startTime;
             this.displayedLength = ((this.endTime.getTime() - this.startTime.getTime()) / 3600000);
         }
+    }
+
+    onCompletedChanged(inputValue: boolean) {
+        this.completed = inputValue;
     }
 
 }

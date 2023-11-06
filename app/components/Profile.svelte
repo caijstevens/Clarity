@@ -1,6 +1,4 @@
 <page>
-
-    <!-- -->
     <actionBar title="Profile">
         <navigationButton text="Back" android.systemIcon="ic_menu_back" on:tap="{ goBack }"/>
     </actionBar>
@@ -29,15 +27,65 @@
                 <button text="Manage App Display" top="20" height="40" width="95%" left="-7"/>
             </absoluteLayout>
         </stackLayout>
-   
-
-
         <label dock="bottom" height="1" backgroundColor="#E3E1E6"/>  
     </dockLayout>
 </page>
 
 <script lang="ts">
     import { goBack } from 'svelte-native';
+    import { navigate } from 'svelte-native';
+
+    import EditProfile from "./EditProfile.svelte";
+    import AccountSettings from "./AccountSettings.svelte";
+    import ManageCategories from "./ManageCategories.svelte";
+    import ManageRoutinePreferences from "./ManageRoutinePreferences.svelte";
+    import ManageAppDisplay from "./ManageAppDisplay.svelte";
+
+    function editProfilePage() {
+        navigate ({
+            page: EditProfile,
+            props: {
+                
+            }
+        })
+    }
+
+    function accountSettingsPage() {
+        navigate ({
+            page: AccountSettings,
+            props: {
+                
+            }
+        })
+    }
+
+    function manageCategoriesPage() {
+        navigate ({
+            page: ManageCategories,
+            props: {
+                
+            }
+        })
+    }
+
+    function manageRoutinePreferencesPage() {
+        navigate ({
+            page: ManageRoutinePreferences,
+            props: {
+                
+            }
+        })
+    }
+
+    function manageAppDisplayPage() {
+        navigate ({
+            page: ManageAppDisplay,
+            props: {
+                
+            }
+        })
+    }
+
 </script>
 
 <style>

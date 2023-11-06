@@ -23,9 +23,10 @@
 <script lang="ts">
     // Imports for the necessary classes and functions.
     import { closeModal } from "svelte-native";
-    import { UserSettings } from "./classes/UserSettings";
     import { PropertyChangeData } from "@nativescript/core";
 
+    import { UserSettings } from "./classes/UserSettings";
+    
     let settings: UserSettings;
     let focusLengthList: String[] = ["30 mins", "60 mins", "90 mins", "120 mins", "150 mins"]
 
@@ -47,4 +48,6 @@
         settings.changeFocusLength(data.value);
         forceUpdate();
     }
+
+    
 </script>

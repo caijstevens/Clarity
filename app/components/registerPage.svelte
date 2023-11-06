@@ -16,11 +16,24 @@
 
 <script lang="ts">
     import { closeModal } from "svelte-native";
+
+    import { ServerInfo } from "./classes/ServerInfo";
+    
     let username = "";
     let password = "";
     let email = "";
     let confirmEmail = "";
     let confirmPassword = "";
+
+    function checkNotEmpty(username: string, email1: string, email2: string, pw1: string, pw2: string) {
+        let notEmpty = false;
+        if (username != "" && email1 != "" && email2 != "" && pw1 != "" && pw2 != "") {
+            notEmpty = true;
+        } else {
+            notEmpty = false;
+        }
+        return notEmpty;
+    }
 
     function checkMatch(email1: string, email2: string, pw1: string, pw2: string) {
         if ((email1 == email2) && (pw1 == pw2)) {
@@ -29,8 +42,14 @@
     }
 
     function processRegistration(email1: string, email2: string, pw1: string, pw2: string) {
-        let valid = checkMatch(email1, email2, pw1, pw2);
+        let valid = false;
+        let notEmpty = checkNotEmpty(username, email, confirmEmail, password, confirmPassword);
+        let match = checkMatch(email1, email2, pw1, pw2);
+        if (notEmpty && match) {
+           valid = true; 
+        }
         console.log(valid);
+        
     }
 
 </script>

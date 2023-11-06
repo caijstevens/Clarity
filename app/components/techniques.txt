@@ -6,7 +6,7 @@
 
 
 techniques:
-- merge sort or quick sort for ordering tasks
+- merge sort for ordering tasks
 - complex data model
 - list operations
 - scheduling algorithms

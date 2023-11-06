@@ -1,8 +1,9 @@
 <!-- Page to modify a task. User is redirected to this page when either creating a new task or clicking on an existing task to modify it. -->
 <frame>
     <page on:navigatingTo="{ catStringArray }" backgroundColor="#5B484A">
+        
         <actionBar title="Edit Task" class="action-bar" backgroundColor="#8B5943">
-            <actionItem on:tap="{() => closeModal}" ios.systemIcon="14" ios.position="right" android.systemIcon="ic_menu_close_clear_cancel" android.position="actionBar"/> 
+            <actionItem on:tap="{closeModal}" ios.systemIcon="14" ios.position="right" android.systemIcon="ic_menu_close_clear_cancel" android.position="actionBar"/> 
         </actionBar>
 
         <!-- Stack layout allows all the properties of the task to be presented in a vertical list. -->
@@ -17,6 +18,7 @@
             </absoluteLayout>
 
             <!-- If the task is dynamic, the user can adjust how long the task should take, and choose whether or not it has a deadline. -->
+            
             {#if currentTask.dynamic}
                 <absoluteLayout height="50">
                     <label text="Timeframe" fontSize="20" height="100%" width="100%" textAlignment="left" paddingLeft="15" />
@@ -26,7 +28,7 @@
                     <label text="Deadline" fontSize="20" height="100%" width="100%" textAlignment="left" paddingLeft="15" />
                     <switch checked="{currentTask.hasDeadline}" on:checkedChange="{ hasDeadlineInput }" height="100%" left="300"/>
                 </absoluteLayout>
-                <!-- If the task has a deadline, the user can then provide the exact date and time of the deadline. -->
+                
                 {#if currentTask.hasDeadline}
                     <absoluteLayout height="50">
                         <timePicker time="{currentTask.deadline}" on:timeChange="{ deadlineInput }" maxHour="11" width="90%" height="100%"/>
@@ -35,7 +37,8 @@
                     </absoluteLayout>
                 {/if}
             {:else}
-                <!-- If the task is not dynamic, the user provides the start and end time of the event to prevent overlap of events. -->
+            
+                
                 <absoluteLayout height="50">
                     <label text="Start Time" fontSize="20" height="100%" width="100%" textAlignment="left" paddingLeft="15" />
                     <timePicker time="{currentTask.startTime}" on:timeChange="{ startTimeInput }" width="90%" height="100%"/>
@@ -45,7 +48,7 @@
                     <label text="End Time" fontSize="20" height="100%" width="100%" textAlignment="left" paddingLeft="15" />
                     <timePicker time="{currentTask.endTime}" on:timeChange="{ endTimeInput }" width="90%" height="100%"/>
                 </absoluteLayout>
-                <!-- There is also an option to implement a deadline here, as above. -->
+                
                 <absoluteLayout height="50">
                     <label text="Deadline" fontSize="20" height="100%" width="100%" textAlignment="left" paddingLeft="15" />
                     <switch checked="{currentTask.hasDeadline}" on:checkedChange="{ hasDeadlineInput }" height="100%" left="300"/>
@@ -58,6 +61,8 @@
                     </absoluteLayout>
                 {/if}
             {/if}
+            
+            
             <!-- Allows the user to change the category of events the current task is assigned to. -->
             <absoluteLayout height="50">
                 <label text="Category" fontSize="20" height="100%" width="100%" textAlignment="left" paddingLeft="15" />
@@ -72,30 +77,34 @@
                 <listPicker items="{ enjoymentList }" on:selectedIndexChange="{ enjoymentInput }" width="60%" height="100%" left="155" selectedIndex="{ currentTask.enjoyment }"/>
             </absoluteLayout>
             <absoluteLayout height="50">
+                <label text="Completed" fontSize="20" height="100%" width="100%" textAlignment="left" paddingLeft="15" />
+                <switch checked="{currentTask.completed}" on:checkedChange="{ completedInput }" height="100%" left="300"/>
+            </absoluteLayout>
+            <absoluteLayout height="50">
                 <button text="Delete" on:tap="{ () => closeModal("delete") }" fontSize="20" color="red" textAlignment="left" paddingLeft="0" backgroundColor="#5B484A"/>
             </absoluteLayout>
-            <absoluteLayout>
-                <label text="Completed" fontSize="20" height="100%" width="100%" textAlignment="left" paddingLeft="15" />
-                <input type="checkbox"/>
-            </absoluteLayout>
+            
+            
         </stackLayout>
     </page>
 </frame>
 
 <script lang="ts">
     // Imports for the necessary classes and functions.
+    import { closeModal } from "svelte-native";
     import { PropertyChangeData } from "@nativescript/core";
+
+    import * as utils from "./utils";
+
     import { Task } from "./classes/Task";
     import { Category } from "./classes/Category";
-    import * as utils from "./utils";
-    import { closeModal } from "svelte-native";
-
+    
     // Declaring useful variables for use in many functions.
     export let currentTask: Task;
     export let categories: Category[];
     let categoryNames: string[];
-    let priorityList = ["High", "Medium", "Low"];
-    let enjoymentList = ["High", "Medium", "Low"];
+    let priorityList = ["Low", "Medium", "High"];
+    let enjoymentList = ["Low", "Medium", "High"];
     
     // Forces the app to update the information so that the properties are reactive immediately. All functions below with 'Input' in the name make use of forceUpdate on different features.
     function forceUpdate() {
@@ -124,6 +133,11 @@
 
     function endTimeInput(data: PropertyChangeData) {
         currentTask.onEndTimeChanged(data.value);
+        forceUpdate();
+    }
+
+    function completedInput(data: PropertyChangeData) {
+        currentTask.onCompletedChanged(data.value);
         forceUpdate();
     }
 

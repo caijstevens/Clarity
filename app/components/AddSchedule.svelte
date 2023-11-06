@@ -36,13 +36,15 @@
 
 <script lang="ts">
     // Imports for the necessary classes and functions.
+    import { goBack } from 'svelte-native';
     import { showModal } from 'svelte-native';
+
+    import modifyTask from "./modifyTask.svelte";
+    import * as utils from "./utils";
+    
     import { Task } from "./classes/Task";
     import { Category } from "./classes/Category";
-    import { goBack } from 'svelte-native';
-    import * as utils from "./utils";
-    import modifyTask from "./modifyTask.svelte";
-
+    
     // Creates blank arrays for a list of tasks and a list of categories.
     export let tasks: Task[] = [];
     export let categories: Category[] = []

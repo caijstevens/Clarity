@@ -2,21 +2,30 @@ import * as utils from "../utils";
 
 export class UserSettings {
     username: string;
+    password: string;
+    emailAddress: string;
     userNickname: string;
+    userAge: number;
     scheduleStart: Date;
     scheduleEnd: Date;
     focusLength: number;
 
     constructor (
         username = "",
+        password = "",
+        emailAddress = "",
         userNickname = "",
+        userAge = 0,
         scheduleStart = new Date(),
         scheduleEnd = new Date(),
         focusLength = 30
 
     ) {
         this.username = username;
+        this.password = password;
+        this.emailAddress = emailAddress;
         this.userNickname = userNickname;
+        this.userAge = userAge;
         this.scheduleStart = scheduleStart;
         this.scheduleEnd = scheduleEnd;
         this.focusLength = focusLength;
