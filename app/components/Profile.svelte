@@ -1,4 +1,6 @@
 <page>
+
+    <!-- -->
     <actionBar title="Profile">
         <navigationButton text="Back" android.systemIcon="ic_menu_back" on:tap="{ goBack }"/>
     </actionBar>

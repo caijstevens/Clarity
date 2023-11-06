@@ -2,11 +2,7 @@
 <frame>
     <page on:navigatingTo="{ catStringArray }" backgroundColor="#5B484A">
         <actionBar title="Edit Task" class="action-bar" backgroundColor="#8B5943">
-            <actionItem
-            on:tap="{closeModal}"
-            ios.systemIcon="14" ios.position="right"
-            android.systemIcon="ic_menu_close_clear_cancel" android.position="actionBar"
-            /> 
+            <actionItem on:tap="{() => closeModal}" ios.systemIcon="14" ios.position="right" android.systemIcon="ic_menu_close_clear_cancel" android.position="actionBar"/> 
         </actionBar>
 
         <!-- Stack layout allows all the properties of the task to be presented in a vertical list. -->
@@ -131,7 +127,7 @@
         forceUpdate();
     }
 
-    // This function here creates a list of the names of each category, so that they can then be used in the listPicker for the user to select a category.
+    // This function creates a list of the names of each category, so that they can then be used in the listPicker for the user to select a category.
     function catStringArray() {
         categoryNames = [];
         for (let index = 0; index < categories.length; index++) {

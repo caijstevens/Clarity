@@ -12,16 +12,14 @@ Coding:
     Dynamic task algorithm:
     - Implement a method of adding time for breaks.
     - Take into account the user Profile settings in order to personalise the algorithm.
-    - Find method of checking that a timeslot is fully available - avoiding collisions.
+    - Find method of checking that a timeslot is fully available - avoiding collisions. ✅
 
     Task management:
     - Sort out category creation and management.
     - Time-free validation for fixed tasks.
 
     Profile page:
-    - Create Profile page.
-    - Aesthetics e.g. user photo.
-    - Accessibility e.g. font settings, text size settings, colourblindness (Apple system settings is a good template but there will be limits to reasonable implementation in this).
+    - Create Profile page. ✅
     - User productivity preferences e.g. morning/night, average sleep schedule, attention span etc.
     - Category management go here?
 
@@ -31,4 +29,3 @@ Writeup:
     - Update user management objectives.
     - Have a full interview with Ollie to help 'determine' objectives.
     - Define any keywords that I may use during the writeup.
-    - HOMEWORK : Overall System Design etc

@@ -1,4 +1,5 @@
 <!-- This is the main page which opens when the user opens the app. It displays the user's schedule for the day. -->
+
 <page on:navigatingTo="{onNavigatingTo}">
     <actionBar title="CLARITY" class="action-bar" backgroundColor="#8B5943">
         <!-- Adds a button to create a new schedule. This takes the user to the AddSchedule page. -->
@@ -8,6 +9,7 @@
             android.systemIcon="btn_plus" android.position="actionBar"
         /> 
     </actionBar>
+
     <!-- Making use of a dockLayout to position elements in the correct places. -->
     <dockLayout class="home" stretchLastChild="true" backgroundColor="#E3E1E6">
         <absoluteLayout dock="top" height="40" backgroundColor="#E1D1B9">
@@ -27,7 +29,6 @@
                 </absoluteLayout>
             {/each}
         </stackLayout>
-
 
 
         <label dock="bottom" height="1" backgroundColor="#E3E1E6"/>  
@@ -92,6 +93,7 @@
     import { navigate } from 'svelte-native';
     import { Task } from "./classes/Task";
     import { Category } from "./classes/Category";
+    import { UserSettings } from "./classes/UserSettings";
     import * as utils from "./utils";
     import { SwipeGestureEventData } from "@nativescript/core";
     import { showModal } from 'svelte-native';
@@ -109,6 +111,7 @@
     let weekDays = ["M","T","W","T","F","S","S"];
     let weekDates = utils.getWeekFromDay(selectedDay);
     let isModalOpen: boolean = false;
+    let userSettings = new UserSettings("username", "nickname", new Date(8 * 3600000), new Date(20 * 3600000));
     
     // An aesthetics management function to ensure that the hours are displayed in 24-hour time, adding leading zeros where needed.
     function padNumber(num: number, size: number) {
@@ -132,6 +135,7 @@
         navigate ({
             page: Profile,
             props: {
+                userSettings: userSettings
                 
             }
         })
