@@ -65,7 +65,6 @@
         })
         if (result == "delete") {
             tasks.splice(index);
-
         }
         forceUpdate();
     }
@@ -77,6 +76,7 @@
         openTask(index - 1);
     }  
 </script>
+
 <style>
     
 </style>

@@ -48,6 +48,5 @@
         settings.changeFocusLength(data.value);
         forceUpdate();
     }
-
     
 </script>

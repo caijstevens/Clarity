@@ -138,8 +138,7 @@
         navigate ({
             page: Profile,
             props: {
-                userSettings: userSettings
-                
+                userSettings: userSettings 
             }
         })
     }
@@ -170,9 +169,6 @@
         }
     }
 
-   
-
-    
     async function openTask(index: number) {
         if (!isModalOpen) {
             isModalOpen = true;
@@ -185,7 +181,6 @@
             })
             if (result == "delete") {
                 tasks.splice(index);
-
             }
             forceUpdate();
             isModalOpen = false;
@@ -195,8 +190,7 @@
     async function checkLogin() {
         const result = await showModal({
             page: loginPage
-        })
-        
+        })       
         if (result == "register") {
             checkRegister();
         }
@@ -207,18 +201,14 @@
         const result = await showModal({
             page: RegisterPage
         })
-
         if (result == "login") {
             checkLogin();
         }
     }
 
-
-
     function onNavigatingTo() {
         checkLogin();
         updateTaskTimes();
-
     }
 
     Http.request({
@@ -235,15 +225,11 @@
         }
     )
 
-    // below is the algorithm to organise and schedule dynamic tasks.
-
-
     //main
     showModal({
         page: loginPage,
         
     })
-    
 
 </script>
 

@@ -13,7 +13,6 @@ export function listSeparateSort(tasks: Task[]) {
             fixedTasks.push(currentTask);
         }
     }
-
     let sortedFixed = taskMergeSort.sortTasks(fixedTasks, "Date");
     let sortedDynamic = taskMergeSort.sortTasks(dynamicTasks, "Importance");
     return {sortedFixed, sortedDynamic}

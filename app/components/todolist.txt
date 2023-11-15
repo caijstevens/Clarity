@@ -1,31 +1,60 @@
 NEA TO DO LIST:
 
-Coding:
-    Mr Tong's Feedback:
+Mr Tong's Feedback:
     - Implement polymorphism and parent classes (admin vs customer login).
-    - Implement a possible business version option.
 
-    Client-server model:
+Client-server model:
     - Design SQL databases for user management.
     - Implement the server operation into the code.
+    - Login from the app
+    - Automatic data updates
+    - Login only required on first open.
 
-    Dynamic task algorithm:
-    - Implement a method of adding time for breaks.
-    - Take into account the user Profile settings in order to personalise the algorithm.
-    - Find method of checking that a timeslot is fully available - avoiding collisions. ✅
 
-    Task management:
-    - Sort out category creation and management.
-    - Time-free validation for fixed tasks.
+Scheduling algorithm:
+    - Adding time for breaks.
+    - Add mealtimes
+    - Add time for exercise
+    - Schedule showering for directly after exercise.
+    - Ensure completion by deadline
+Inputs:
 
-    Profile page:
-    - Create Profile page. ✅
-    - User productivity preferences e.g. morning/night, average sleep schedule, attention span etc.
-    - Category management go here?
+    ManageCategories:
+    - Category management:
+        - category name
+        - colour picker
+        - enjoyment
+        - priority
+        - delete button
+
+    EditProfile:
+    - Change user profile button colour
+
+    AccountSettings:
+    - Improve validation
+
+    ManageRoutinePreferences:
+    - what time does user eat meals
+    - how long does user work out for.
+
+    Login/Register:
+    - Stop the popup every time you open Home
+
+    Profile:
+    - Display nickname and username
+
+User Interface:
+
+    General:
+    - Check consistency of UI colours
+    - Check font sizing
+
+    Home:
+    - All tasks presented in correct category colour
+    - B/W text must contrast category colour
+
+
+
 
 
 Writeup:
-    Analysis:
-    - Update user management objectives.
-    - Have a full interview with Ollie to help 'determine' objectives.
-    - Define any keywords that I may use during the writeup.

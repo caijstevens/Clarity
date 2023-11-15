@@ -5,7 +5,7 @@ export class UserSettings {
     password: string;
     emailAddress: string;
     userNickname: string;
-    userAge: number;
+    profileColour: string;
     scheduleStart: Date;
     scheduleEnd: Date;
     focusLength: number;
@@ -15,7 +15,7 @@ export class UserSettings {
         password = "",
         emailAddress = "",
         userNickname = "",
-        userAge = 0,
+        profileColour = "",
         scheduleStart = new Date(),
         scheduleEnd = new Date(),
         focusLength = 30
@@ -25,7 +25,7 @@ export class UserSettings {
         this.password = password;
         this.emailAddress = emailAddress;
         this.userNickname = userNickname;
-        this.userAge = userAge;
+        this.profileColour = profileColour;
         this.scheduleStart = scheduleStart;
         this.scheduleEnd = scheduleEnd;
         this.focusLength = focusLength;
@@ -48,8 +48,12 @@ export class UserSettings {
         }
     }
 
-    changeFocusLength(newValue: String) {
+    changeFocusLength(newValue: string) {
         let focusNumber = (newValue.split(" "))[0];
         this.focusLength = parseInt(focusNumber);
+    }
+
+    onProfileColourChanged(inputValue: string) {
+        this.profileColour = inputValue;
     }
 }

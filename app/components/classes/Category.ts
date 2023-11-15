@@ -20,24 +20,15 @@ export class Category {
 
     }
 
-    setName(newName: string) {
-        this.name = newName;
+    onColourChanged(inputValue: string) {
+        this.colour = inputValue;
     }
 
-    setColour(newColour: string) {
-        if (newColour.length == 6) {
-            this.colour = ("#" + newColour);
-        } else {
-            this.colour = this.colour;
-        }
+    onPriorityChanged(inputValue: number) {
+        this.priority = utils.clamp(inputValue, 0, 2);
     }
 
-    setPriority(newPriority: number) {
-        this.priority = utils.clamp(newPriority, 0, 2);
+    onEnjoymentChanged(inputValue: number) {
+        this.enjoyment = utils.clamp(inputValue, 0, 2);
     }
-
-    setEnjoyment(newEnjoyment: number) {
-        this.enjoyment = utils.clamp(newEnjoyment, 0, 2);
-    }
-
 }

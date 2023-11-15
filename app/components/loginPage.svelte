@@ -13,11 +13,10 @@
 
 <script lang="ts">
     import { closeModal } from "svelte-native";
-    
+
     import { UserSettings } from "./classes/UserSettings";
 
     let thisUser = new UserSettings;
-
 </script>
 
 <style>

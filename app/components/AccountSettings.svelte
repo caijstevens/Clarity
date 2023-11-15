@@ -37,7 +37,7 @@
 
 <script lang="ts">
     import { closeModal } from "svelte-native";
-    
+
     import { UserSettings } from "./classes/UserSettings";
 
     let thisUser = new UserSettings;
@@ -53,7 +53,6 @@
             if (newPw1.length >= 8) {
                 validPw = true;
                 thisUser.password = newPw1;
-
             }
         }
         return validPw;
@@ -65,7 +64,6 @@
             if (newEmail1.length >= 8) {
                 validEmail = true;
                 thisUser.emailAddress = newEmail1;
-
             }
         }
         return validEmail;
@@ -87,8 +85,5 @@
         }
         return validity;
     }
-
-    
-    
 
 </script>
