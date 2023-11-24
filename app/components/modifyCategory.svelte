@@ -12,7 +12,7 @@
                 
             <absoluteLayout height="50">
                 <label text="Colour" fontSize="20" height="100%" width="100%" textAlignment="left" paddingLeft="15" />
-                <ColorPicker on:checkedChange="{ colourInput }" selectedIndex="{ thisCategory.colour }" bind:hex/>
+                
             </absoluteLayout>
             
 
@@ -37,7 +37,7 @@
     // Imports for the necessary classes and functions.
     import { closeModal } from "svelte-native";
     import { PropertyChangeData } from "@nativescript/core";
-    import ColorPicker from 'svelte-awesome-color-picker';	
+   
 
     import * as utils from "./utils";
 
@@ -48,7 +48,7 @@
     export let currentCategory: Category;
     let priorityList = ["Low", "Medium", "High"];
     let enjoymentList = ["Low", "Medium", "High"];
-    let hex;
+   
 
     function colourInput(data: PropertyChangeData) {
         currentCategory.onColourChanged(data.value);

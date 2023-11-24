@@ -10,7 +10,6 @@
             </absoluteLayout>
             {#if coloursOn == true}
                 <absoluteLayout height="50">
-                    <ColorPicker on:checkedChange="{ () => profileColourInput }" bind:hex/>
                 </absoluteLayout>
             {/if}
         </stackLayout>
@@ -18,15 +17,13 @@
 </frame>
 
 <script lang="ts">
-    import { UserSettings } from "./classes/UserSettings";
-    import ColorPicker from 'svelte-awesome-color-picker';	
+    import { UserSettings } from "./classes/UserSettings";	
     import { PropertyChangeData } from "@nativescript/core";
 
 
     export let thisUser = new UserSettings;
     let coloursOn = false;
-    let hex: any;
-
+   
     function toggleColoursOn() {
         if (!coloursOn) {
             coloursOn;

@@ -21,7 +21,7 @@
                 <button text="Manage Categories" on:tap="{ manageCategoriesPage }"top="10" height="40" width="95%" left="-7"/>
             </absoluteLayout>
             <absoluteLayout height="40" top="5">
-                <button text="Manage Routine Preferences" on:tap="{ manageRoutinePreferencesPage } top="15" height="40" width="95%" left="-7"/>
+                <button text="Manage Routine Preferences" on:tap="{ manageRoutinePreferencesPage }" top="15" height="40" width="95%" left="-7"/>
             </absoluteLayout>
         </stackLayout>
         <label dock="bottom" height="1" backgroundColor="#E3E1E6"/>  
