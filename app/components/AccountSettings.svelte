@@ -1,39 +1,43 @@
-<frame>
-    <page>
-        <actionBar title="Manage Account Settings" class="action-bar" backgroundColor="#8B5943">
-            <actionItem
-            on:tap="{closeModal}" ios.systemIcon="14" ios.position="right" android.systemIcon="ic_menu_close_clear_cancel" android.position="actionBar"/> 
-        </actionBar>
-        <absoluteLayout height="80">
-            <label text="Current Username: {thisUser.username}"/>
-            <textField bind:text="{ thisUser.username }" hint="New Username" editable="true" fontSize="20" height="40" textAlignment="left"/>
+<page backgroundColor="#5B484A">
+    <actionBar title="Manage Account Settings" class="action-bar" backgroundColor="#8B5943"/>
+    <stackLayout>
+        <absoluteLayout height="40" top="20">
+            <label text="Current Username: {thisUser.username}" color="white" top="20" left="15" fontSize="20"/>
         </absoluteLayout>
-        <absoluteLayout height="80">
-            <textField bind:text="{ newPw1 }" hint="New Password" editable="true" fontSize="20" height="40" textAlignment="left"/>
-            <textField bind:text="{ newPw2 }" hint="Confirm Password" editable="true" fontSize="20" height="40" textAlignment="left"/>
+        <absoluteLayout height="60" top="40" >
+            <textField bind:text="{ thisUser.username }" color="white" top="0" hint="New Username" editable="true" fontSize="20" height="40" textAlignment="left"/>
         </absoluteLayout>
-        <absoluteLayout height="80">
-            <textField bind:text="{ newEmail1 }" hint="New Email Address" editable="true" fontSize="20" height="40" textAlignment="left"/>
-            <textField bind:text="{ newEmail2 }" hint="Confirm Email Address" editable="true" fontSize="20" height="40" textAlignment="left"/>
+        <absoluteLayout height="60" top="40" >
+            <textField bind:text="{ newPw1 }" hint="New Password" top="0" editable="true" fontSize="20" height="40" textAlignment="left"/>
         </absoluteLayout>
-        <absoluteLayout height="80">
-            <button text="Save Settings" on:tap="{ () => totalValidation(newPwValidation(newPw1, newPw2, thisUser), newEmailValidation(newEmail1, newEmail2, thisUser))}" fontSize="20" color="white" textAlignment="center" backgroundColor="#5B484A"/> 
+        <absoluteLayout height="60" top="40">
+            <textField bind:text="{ newPw2 }" hint="Confirm Password" top="0" editable="true" fontSize="20" height="40" textAlignment="left"/>
+        </absoluteLayout>
+        <absoluteLayout height="60" top="40">
+            <textField bind:text="{ newEmail1 }" hint="New Email Address" top="0" editable="true" fontSize="20" height="40" textAlignment="left"/>
+        </absoluteLayout>
+        <absoluteLayout height="60" top="40">
+            <textField bind:text="{ newEmail2 }" hint="Confirm Email Address" top="0" editable="true" fontSize="20" height="40" textAlignment="left"/>
+        </absoluteLayout>
+        <absoluteLayout height="60" top="40">
+            <button text="Save Settings" on:tap="{ () => totalValidation(newPwValidation(newPw1, newPw2, thisUser), newEmailValidation(newEmail1, newEmail2, thisUser))}" top="0" left="-5" fontSize="20" color="white" textAlignment="center" backgroundColor="#5B484A"/> 
             {#if (validity == "valid")}
-                <absoluteLayout height="80">
-                    <button text="All fields valid. Tap here to close." on:tap="{ closeModal }" fontSize="20" color="white" textAlignment="center"/>
+                <absoluteLayout height="40" top="100">
+                    <button text="All fields valid. Tap here to close." on:tap="{ closeModal }" fontSize="20" color="white" textAlignment="center" height="20" top="0"/>
                 </absoluteLayout>
             {:else if (validity == "password")}
-                <absoluteLayout height="80">
-                    <label text="Invalid password, or passwords do not match." fontSize="20" color="white" textAlignment="center"/>
+                <absoluteLayout height="40" top="100" width="100%">
+                    <label text="Invalid password, or passwords do not match." fontSize="15" color="white" width="100%" textAlignment="center" height="20" top="0"/>
                 </absoluteLayout>
             {:else if (validity == "email")}
-                <absoluteLayout height="80">
-                    <label text="Invalid email, or emails do not match." fontSize="20" color="white" textAlignment="center"/>
+                <absoluteLayout height="40" top="100" width="100%">
+                    <label text="Invalid email, or emails do not match." fontSize="15" color="white" height="20" width="100%" textAlignment="center" top="0"/>
                 </absoluteLayout>
             {/if}
         </absoluteLayout>
-    </page>
-</frame>
+    </stackLayout>
+</page>
+
 
 <script lang="ts">
     import { closeModal } from "svelte-native";

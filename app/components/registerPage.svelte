@@ -8,7 +8,7 @@
             <textField bind:text="{ password }" hint="Password" editable="true" fontSize="20" height="40" textAlignment="center"/>
             <textField bind:text="{ confirmPassword }" hint="Confirm Password" editable="true" fontSize="20" height="40" textAlignment="center"/>
             <button class="registerButton" text="Register" on:tap="{ () => processRegistration(email, confirmEmail, password, confirmPassword)}" fontSize="20" color="white" textAlignment="center" backgroundColor="#8B5943"/>
-            <button text="I already have an account." on:tap="{ () => closeModal("login")}" fontSize="20" color="white" textAlignment="center" backgroundColor="#5B484A"/>
+            <button text="I already have an account." on:tap="{ () => closeModal("loginPage")}" fontSize="20" color="white" textAlignment="center" backgroundColor="#5B484A"/>
 
         </stackLayout>
     </page>
@@ -16,8 +16,10 @@
 
 <script lang="ts">
     import { closeModal } from "svelte-native";
+    import { Http } from '@nativescript/core';
 
     import { ServerInfo } from "./classes/ServerInfo";
+    
     
     let username = "";
     let password = "";
@@ -47,9 +49,28 @@
         let match = checkMatch(email1, email2, pw1, pw2);
         if (notEmpty && match) {
            valid = true; 
+           Http.request({
+            url: "http://172.20.10.2:5434",
+            method: "POST",
+            content: JSON.stringify({
+                action: "register",
+                username: username,
+                email: email,
+                password: password
+            })
+           }).then(
+                (response) => {
+                    if (response.content) {
+                        console.log(response.content.toString());
+                        closeModal('logged in-' + username);
+                    }
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
         }
-        console.log(valid);
-        
+        console.log(valid);   
     }
 
 </script>

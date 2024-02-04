@@ -20,6 +20,7 @@ export class Category {
 
     }
 
+
     onColourChanged(inputValue: string) {
         this.colour = inputValue;
     }

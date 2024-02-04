@@ -29,19 +29,21 @@
     import { goBack } from 'svelte-native';
     import { Category } from "./classes/Category";
     import { showModal } from 'svelte-native';
+    import { navigate } from 'svelte-native';
+    import { UserSettings } from "./classes/UserSettings";
 
     let categories: Category[] = [];
 
     function forceUpdate() {
         categories = categories;
     }
+    
 
     async function openCategory(index: number) {
         let result = await showModal({
             page: modifyCategory,
             props: {
-                currentTask: categories[index],
-                categories: categories
+                currentCategory: categories[index]
             }
         })
         if (result == "delete") {

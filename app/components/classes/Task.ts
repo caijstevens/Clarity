@@ -108,6 +108,8 @@ export class Task {
         if (!this.dynamic) {
             this.displayedStart = this.startTime;
             this.displayedLength = ((this.endTime.getTime() - this.startTime.getTime()) / 3600000);
+        } else {
+            this.displayedLength = this.timeframe;
         }
     }
 

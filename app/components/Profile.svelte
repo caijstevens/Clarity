@@ -1,5 +1,5 @@
 <page>
-    <actionBar title="Profile">
+    <actionBar title="Profile" backgroundColor="#8B5943">
         <navigationButton text="Back" android.systemIcon="ic_menu_back" on:tap="{ goBack }"/>
     </actionBar>
     <dockLayout class="home" stretchLastChild="true" backgroundColor="#E3E1E6">
@@ -68,6 +68,7 @@
         navigate ({
             page: ManageRoutinePreferences,
             props: {  
+                thisUser: thisUser
             }
         })
     }

@@ -38,6 +38,7 @@
     // Imports for the necessary classes and functions.
     import { goBack } from 'svelte-native';
     import { showModal } from 'svelte-native';
+    import { buildSchedule } from "./ScheduleDesignation";
 
     import modifyTask from "./modifyTask.svelte";
     import * as utils from "./utils";
@@ -47,7 +48,7 @@
     
     // Creates blank arrays for a list of tasks and a list of categories.
     export let tasks: Task[] = [];
-    export let categories: Category[] = []
+    export let categories: Category[] = [];
 
     // Forces the app to update the information so that the properties are reactive immediately
     function forceUpdate() {

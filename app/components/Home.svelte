@@ -52,7 +52,7 @@
                                         {#if task.timeframe < 1}
                                             <span text="{utils.toDate(task.timeframe).getMinutes() + " mins"}" color="{utils.getTextColourFromBackground(categories[task.category].colour)}" on:longPress="{() => openTask(index) }"/>
                                         {:else}
-                                            <span text="{utils.toDate(task.timeframe).getHours() + " hrs " + utils.toDate(task.timeframe).getMinutes() + " mins"}" color="{utils.getTextColourFromBackground(categories[task.category].colour)}" on:longPress="{() => openTask(index) }"/>
+                                            <span text="{utils.toDate(task.timeframe).getHours() + " hrs " + utils.toDate(task.displayedLength).getMinutes() + " mins"}" color="{utils.getTextColourFromBackground(categories[task.category].colour)}" on:longPress="{() => openTask(index) }"/>
                                         {/if}
                                     <!-- If the task is not dynamic, it displays its start time and end time. -->
                                     {:else}
@@ -61,19 +61,19 @@
                                 </formattedString>
                             </label>
                         {:else}
-                            <label top="{(40 * utils.toHours(task.displayedStart)) - 8}" width="75%" left="40%" height="20" textAlignment="left" paddingLeft="20" paddingTop="10" textWrap="true">
+                            <label top="{(40 * utils.toHours(task.displayedStart)) - 8}" width="75%" left="40%" height="{40 * task.timeframe}" textAlignment="left" paddingLeft="20" paddingTop="10" textWrap="true">
                                 <formattedString>
                                     <span text="{task.name}" fontSize="11" fontWeight="bold"/>
                                     <span text="          "/>
                                     {#if task.dynamic}
                                         {#if task.timeframe < 1}
-                                            <span text="{utils.toDate(task.timeframe).getMinutes() + " mins"}" color="{utils.getTextColourFromBackground(categories[task.category].colour)}"/>
+                                            <span text="{utils.toDate(task.timeframe).getMinutes() + " mins"}" color="{utils.getTextColourFromBackground(categories[task.category].colour)}" on:longPress="{() => openTask(index)}"/>
                                         {:else}
-                                            <span text="{utils.toDate(task.timeframe).getHours() + " hrs " + utils.toDate(task.timeframe).getMinutes() + " mins"}" color="{utils.getTextColourFromBackground(categories[task.category].colour)}"/>
+                                            <span text="{utils.toDate(task.timeframe).getHours() + " hrs " + utils.toDate(task.displayedLength).getMinutes() + " mins"}" color="{utils.getTextColourFromBackground(categories[task.category].colour)}" on:longPress="{() => openTask(index)}"/>
                                         {/if}
                                     <!-- If the task is not dynamic, it displays its start time and end time. -->
                                     {:else}
-                                        <span text="{task.startTime.toLocaleTimeString("en-GB").slice(0,5) + " - " + task.endTime.toLocaleTimeString("en-GB").slice(0,5)}" color="{utils.getTextColourFromBackground(categories[task.category].colour)}"/>
+                                        <span text="{task.startTime.toLocaleTimeString("en-GB").slice(0,5) + " - " + task.endTime.toLocaleTimeString("en-GB").slice(0,5)}" color="{utils.getTextColourFromBackground(categories[task.category].colour)}" on:longPress="{() => openTask(index)}"/>
                                     {/if}
                                 </formattedString>
                             </label>
@@ -105,16 +105,19 @@
     import { Category } from "./classes/Category";
     import { UserSettings } from "./classes/UserSettings";
     import { ServerInfo } from "./classes/ServerInfo";
+    import { buildSchedule } from "./ScheduleDesignation";
+    
 
     // Creates blank arrays for a list of tasks and a list of categories.
     let tasks: Task[] = [];
+    tasks = updateSchedule(tasks);
     let categories: Category[] = [new Category(), new Category()];
     let selectedDay = utils.getDay();
     let weekDays = ["M","T","W","T","F","S","S"];
     let weekDates = utils.getWeekFromDay(selectedDay);
     let isModalOpen: boolean = false;
-    let userSettings = new UserSettings("username", "nickname", new Date(8 * 3600000), new Date(20 * 3600000));
-    let serverInfo = new ServerInfo("")
+    let thisUser = new UserSettings("username", "password", "email address", "nickname", "000000", new Date(8 * 3600000), new Date(20 * 3600000));
+    export let username: string;
     
     // An aesthetics management function to ensure that the hours are displayed in 24-hour time, adding leading zeros where needed.
     function padNumber(num: number, size: number) {
@@ -134,11 +137,15 @@
         })
     }
 
+    function updateSchedule(tasks: Task[]) {
+        return buildSchedule(tasks);
+    }
+
     function toProfile() {
         navigate ({
             page: Profile,
             props: {
-                userSettings: userSettings 
+                userSettings: thisUser 
             }
         })
     }
@@ -154,7 +161,7 @@
         }
         forceUpdate();
 
-    }
+    } 
 
     function changeSelectedDay(day: Date) {
         selectedDay = utils.getDay(day);
@@ -188,48 +195,62 @@
     }
 
     async function checkLogin() {
-        const result = await showModal({
+        const result: string | undefined = await showModal({
             page: loginPage
-        })       
-        if (result == "register") {
+        })
+        console.log(result?.slice(0,9));
+        if (!result) {
+            checkLogin();       
+        } else if (result == "registerPage") {
             checkRegister();
+        } else if (result.slice(0, 10) == "logged in-") {
+            username = result.slice(10);
+            console.log(username);
         }
-        
     }
 
     async function checkRegister() {
-        const result = await showModal({
+        const result: string | undefined = await showModal({
             page: RegisterPage
         })
-        if (result == "login") {
+        if (!result) {
+            checkRegister();
+        } else if (result == "loginPage") {
             checkLogin();
+        } else if (result.slice(0, 9) == "logged in-") {
+            username = result.slice(10);
         }
     }
 
     function onNavigatingTo() {
-        checkLogin();
+        console.log("username: " + username);
+        if (!username) {
+            checkLogin();    
+        }
+        thisUser.tasks = tasks;
+        updateSchedule(tasks);
+        copyTasksToDatabase(username, tasks);
         updateTaskTimes();
     }
 
-    Http.request({
-        url: "http://10.0.4.61:5434",
-        method: "GET"
-    }).then(
-        (response) => {
-            if (response.content) {
-                console.log(response.content.toString());
-            }
-        },
-        (error) => {
-            console.log(error);
-        }
-    )
+    function copyTasksToDatabase(username: string, tasks: Task[]) {
+        thisUser.tasks = tasks;
+        Http.request({
+            url: "http://172.20.10.2:5434",
+            method: "POST",
+            content: JSON.stringify({
+                action: "updateTasks",
+                username: username,
+                tasks: tasks
+            })
+        }).then(
+            (response) => {
+            })
+             
+    }
 
     //main
-    showModal({
-        page: loginPage,
-        
-    })
+    
 
 </script>
 
