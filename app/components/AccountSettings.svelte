@@ -41,10 +41,10 @@
 
 <script lang="ts">
     import { closeModal } from "svelte-native";
-
+    import thisUser from "/Home.svelte";
     import { UserSettings } from "./classes/UserSettings";
 
-    let thisUser = new UserSettings;
+    
     let newPw1 = "";
     let newPw2 = "";
     let newEmail1 = "";

@@ -4,4 +4,3 @@ BUGS:
 - displayed tasks not correct length
 - dynamic tasks always set for next hour
 - profile page not linked up
-- GET A NEW CLIENT

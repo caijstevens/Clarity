@@ -116,7 +116,7 @@
     let weekDays = ["M","T","W","T","F","S","S"];
     let weekDates = utils.getWeekFromDay(selectedDay);
     let isModalOpen: boolean = false;
-    let thisUser = new UserSettings("username", "password", "email address", "nickname", "000000", new Date(8 * 3600000), new Date(20 * 3600000));
+    export let thisUser = new UserSettings("username", "password", "email address", "nickname", "000000", new Date(8 * 3600000), new Date(20 * 3600000));
     export let username: string;
     
     // An aesthetics management function to ensure that the hours are displayed in 24-hour time, adding leading zeros where needed.

@@ -16,8 +16,8 @@
     import ProfileColourPicker from "./ProfileColourPicker.svelte"
     import { PropertyChangeData } from "@nativescript/core";
     import { showModal } from 'svelte-native';
-
-    export let thisUser = new UserSettings;
+    import thisUser from "/Home.svelte";
+    
 
 </script>
 

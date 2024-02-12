@@ -23,10 +23,10 @@
     import { UserSettings } from "./classes/UserSettings";
     import { closeModal } from "svelte-native";
     import * as utils from "./utils";
-
+    import thisUser from "/Home.svelte";
     let columnNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     let rowNumbers = [0, 1, 2, 3, 4];
-    let thisUser = new UserSettings;
+    
     let backgroundColours = [
     ["#660000", "#990000", "#CC0000", "#FF1919", "#FF1D1D", "#FF8080", "#FF9999", "#FFB2B2", "#FFCCCC", "#FFE6E6"],
     ["#000000", "#290029", "#520052", "#7A007A", "#A300A3", "#E680E6", "#F0B2F0", "#F5CCF5", "#FAE6FA", "#FFFFFF"],

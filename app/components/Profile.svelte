@@ -37,8 +37,8 @@
     import ManageCategories from "./ManageCategories.svelte";
     import ManageRoutinePreferences from "./ManageRoutinePreferences.svelte";
     import { UserSettings } from "./classes/UserSettings";
-
-    export let thisUser = new UserSettings;
+    import thisUser from "/Home.svelte";
+    
 
     function editProfilePage() {
         navigate ({

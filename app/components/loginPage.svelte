@@ -20,10 +20,9 @@
     import { closeModal } from "svelte-native";
     import { Http } from '@nativescript/core';
     import * as serverInfo from "./classes/ServerInfo";
-
+    import thisUser from "/Home.svelte";
     import { UserSettings } from "./classes/UserSettings";
 
-    let thisUser = new UserSettings;
     let username = "";
     let password = "";
     let failedLogin = false;
@@ -43,7 +42,7 @@
                     console.log("response=" + response.content.toString());
                     if (response.statusCode == 418) {
                         failedLogin = true;
-                    
+                        
 
                     } else {
                        closeModal('logged in-' + response.content.toString()); 

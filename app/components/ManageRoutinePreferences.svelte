@@ -38,10 +38,10 @@
     // Imports for the necessary classes and functions.
     import { closeModal } from "svelte-native";
     import { PropertyChangeData } from "@nativescript/core";
-
+    import thisUser from "/Home.svelte";
     import { UserSettings } from "./classes/UserSettings";
     
-    let thisUser = new UserSettings;
+    
     let focusLengthList: String[] = ["30 mins", "60 mins", "90 mins", "120 mins", "150 mins"];
     let workoutLengthList: String[] = ["30 mins", "60 mins", "90 mins", "120 mins", "150 mins"];
 
